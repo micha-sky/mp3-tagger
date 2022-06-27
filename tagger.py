@@ -30,7 +30,7 @@ def parse_filename(_dir, file_name):
     if audiofile.tag.title is None:
         # detect title here. add more complicated logic
         audiofile.tag.title = unicode(track, "utf-8")
-    print 'parsed ', artist, track
+    print("parsed %s - %s " % (artist, track))
     audiofile.tag.save()
 
 
