@@ -26,10 +26,10 @@ def parse_filename(_dir, file_name):
     audiofile = eyed3.load(file_name)
     if audiofile.tag.artist is None:
         # detect artist here. add more complicated logic
-        audiofile.tag.artist = unicode(artist, "utf-8")
+        audiofile._tag.artist = str(artist)
     if audiofile.tag.title is None:
         # detect title here. add more complicated logic
-        audiofile.tag.title = unicode(track, "utf-8")
+        audiofile._tag.title = str(track)
     print("parsed %s - %s " % (artist, track))
     audiofile.tag.save()
 
@@ -41,5 +41,5 @@ for root, directories, filenames in os.walk(dir_):
         if filename.endswith(".mp3"):
             try:
                 parse_filename(root, filename)
-            except (StandardError, IndexError) as e:
+            except (IndexError) as e:
                 print(e)
